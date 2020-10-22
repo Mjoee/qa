@@ -6,10 +6,13 @@ package lesson1;
  */
 public class Task5 {
     public static void main(String[] args) {
-        //System.out.println(reverse("Hello world!!!"));
+
+        StringBuffer reversedName = new StringBuffer("Nikita Piatilietov");
+        reversedName.reverse();
+        System.out.println(reversedName);
+
     }
 
-    public static String reverse(String str) {
-        return "";
-    }
+
+
 }

@@ -6,24 +6,27 @@ System.out.println, System.out.print можно использовать тол�
 для этого нужно воспользоваться циклом while
 */
 
+import org.w3c.dom.ls.LSOutput;
+
+import java.io.PrintStream;
+
 public class Task3 {
 
     public static void main(String[] args) {
-        String s = "Vladimir";
-        System.out.println(
-                s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " "
-                        + s);
-        System.out.println(
-                s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " "
-                        + s);
-        System.out.println(
-                s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " "
-                        + s);
-        System.out.println(
-                s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " "
-                        + s);
-        System.out.println(
-                s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " " + s + " "
-                        + s);
+        String s = "Nikita ";
+        int counter = 0;
+
+        while (counter < 5) {
+            System.out.println(s + s + s + s + s + s + s + s + s + s);
+            counter++;
+        }
+
+
+
+
+
+
     }
+
 }
+
