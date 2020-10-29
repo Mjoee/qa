@@ -1,6 +1,9 @@
 package test.java.lesson5;
 import main.java.lesson3.objects.Cat;
-import main.java.lesson3.objects.HW1;
+import main.java.home_work.Task2;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
 
 public class FirstTest {
 
@@ -11,7 +14,7 @@ public class FirstTest {
     }
 
     public static void getNamesTest() {
-        String actualResult = HW1.getNames();
+        String actualResult = Task2.getNames();
         System.out.println(actualResult);
         String strArr[] = actualResult.split("\n");
         System.out.println("Lines amount: " + strArr.length);

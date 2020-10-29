@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="FirstSuit">
+    <parameter name="name" value="Alexandrr Matuknin"/>
+    <test name="home_work">
+        <classes>
+            <class name="test.java.home_work.testTask5">
+                <methods>
+                    <include name="testReverse"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
