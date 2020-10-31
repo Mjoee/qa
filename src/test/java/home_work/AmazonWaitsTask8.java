@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.*;
 
 public class AmazonWaitsTask8 {
     WebDriver driver;
@@ -27,6 +28,8 @@ public class AmazonWaitsTask8 {
     By nameField = By.id("ap_customer_name");
     By emailField = By.id("ap_email");
     By passField = By.id("ap_password");
+    By reEnterPass = By.id("ap_password_check");
+    By reEnterPassError = By.xpath("//div[contains(text(),'Type your password again')]");
 
 
     @BeforeMethod
@@ -69,6 +72,44 @@ public class AmazonWaitsTask8 {
 
         String actualColorField = driver.findElement(passField).getCssValue("border-color");
         assertEquals(actualColorName, expectedColor);
+
+    }
+    @Test
+    public void negativeTest2() throws InterruptedException {
+        WebElement signInBtn = driver.findElement(signIn);
+        signInBtn.click();
+
+        WebElement createAccountBtn = driver.findElement(createAccount);
+        createAccountBtn.click();
+
+        WebElement nameFieldReg = driver.findElement(nameField);
+        nameFieldReg.sendKeys("Nikita");
+
+        WebElement emailFieldReg = driver.findElement(emailField);
+        emailFieldReg.sendKeys("AA12ss22s@maildrop.ropot.net");
+
+        WebElement passFieldReg = driver.findElement(passField);
+        passFieldReg.sendKeys("AA12sssd23");
+
+        WebElement confirmCreatingBtn = driver.findElement(confirmCreating);
+        confirmCreatingBtn.click();
+
+        String expectedColor = "rgb(221, 0, 0)";
+        String actualColorName = driver.findElement(nameField).getCssValue("border-color");
+        System.out.println(actualColorName);
+        assertTrue(actualColorName != expectedColor);
+
+        String actualColorEmail = driver.findElement(emailField).getCssValue("border-color");
+        assertTrue(actualColorEmail != expectedColor);
+
+        String actualColorField = driver.findElement(passField).getCssValue("border-color");
+        assertTrue(actualColorField != expectedColor);
+
+        String actualColorReEnterPass = driver.findElement(reEnterPass).getCssValue("border-color");
+        assertEquals(actualColorReEnterPass, expectedColor);
+
+        WebElement reEnterPassErrorTxt = driver.findElement(reEnterPassError);
+        reEnterPassErrorTxt.isDisplayed();
 
 
     }
