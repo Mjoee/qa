@@ -10,4 +10,14 @@ public class Shark extends Animal{
         System.out.println(" I am NOT SLEEPPING ......");
         super.sleep();
     }
+
+    @Override
+    public void move() {
+        System.out.println("ssss");
+    }
+
+    @Override
+    public void eat() {
+
+    }
 }

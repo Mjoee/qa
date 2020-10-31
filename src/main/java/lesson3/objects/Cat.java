@@ -2,7 +2,7 @@ package main.java.lesson3.objects;
 
 import main.java.lesson3.objects.Animal;
 
-public class Cat extends Animal {
+public class Cat extends Animal implements ILandable {
     static int counter = 0;
     String name = "Barsik";
     //String surname = "Cotovich";
@@ -78,5 +78,20 @@ public class Cat extends Animal {
     static public int getCounter() {
         System.out.println("Get counter");
         return counter;
+    }
+
+    @Override
+    public void move() {
+        System.out.println("ssss");
+    }
+
+    @Override
+    public void eat() {
+
+    }
+
+    @Override
+    public void walkByLand() {
+
     }
 }

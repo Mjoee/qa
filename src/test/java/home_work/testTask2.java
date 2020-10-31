@@ -11,8 +11,8 @@ import static org.testng.Assert.assertTrue;
 
 public class testTask2 extends Task2 {
 
-
-    public static void main(String[] args) {
+    @Test
+    public  void testTask2() {
 
         String actualResult = Task2.getNames();
         System.out.println(actualResult);
