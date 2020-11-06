@@ -42,9 +42,10 @@ public class WebDriverAmazon {
 
         System.out.println("New price is: " + priceFirst.getText() + "." + priceSecond.getText());
         String clearOldPrice =  oldPrice1.getText();
-        StringBuffer stringBuffer = new StringBuffer(clearOldPrice);
-        stringBuffer.delete(0,1);
-        clearOldPrice = stringBuffer.toString();
+        clearOldPrice.replace("$", "");
+//        StringBuffer stringBuffer = new StringBuffer(clearOldPrice);
+//        stringBuffer.delete(0,1);
+//        clearOldPrice = stringBuffer.toString();
         System.out.println("Old price is: " + clearOldPrice);
 
 
