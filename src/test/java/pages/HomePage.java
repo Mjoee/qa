@@ -3,9 +3,12 @@ package test.java.pages;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
 
 public class HomePage extends BasePage {
     private Logger logger = LogManager.getLogger(HomePage.class);
@@ -14,6 +17,9 @@ public class HomePage extends BasePage {
     By sellBtnBy = By.xpath("//a[text() ='Sell']");
     By registryBtnBy = By.xpath("//a[text() ='Registry']");
     By giftCardsBtnBy = By.xpath("//a[text() ='Gift Cards']");
+    By searchField = By.id("twotabsearchtextbox");
+    By searchBtn = By.xpath("(//input[@type='submit'])[1]");
+
 
     public HomePage(WebDriver driver) {
         logger.trace("HOME PAGE was initialized");
@@ -60,4 +66,18 @@ public class HomePage extends BasePage {
         ));
         return this;
     }
+
+
+    public HomePage clickSearchBtn() {
+        driver.findElement(searchField).sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public HomePage typeInSearchField(String device){
+        driver.findElement(searchField).sendKeys(device);
+        return this;
+    }
+
+
+
 }
