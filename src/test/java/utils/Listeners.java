@@ -43,7 +43,7 @@ public class Listeners implements ISuiteListener, ITestListener, IInvokedMethodL
         System.out.println("--TEST WAS FAILED");
         driver = (WebDriver) (iTestResult.getTestContext().getAttribute("driver"));
         Screenshots screenshots = new Screenshots(driver);
-        screenshots.makeScreenshoot(iTestResult);
+        screenshots.makeScreenshot(iTestResult);
     }
 
     @Override

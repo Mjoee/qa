@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import test.java.TestBaseSetUp;
+import test.java.TestBaseSetup;
 import test.java.pages.GiftPage;
 import test.java.pages.HomePage;
 
@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-public class PoTest extends TestBaseSetUp {
+public class PoTest extends TestBaseSetup {
     HomePage homePage;
     GiftPage giftPage;
 

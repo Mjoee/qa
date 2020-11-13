@@ -6,14 +6,15 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import test.java.TestBaseSetUp;
+
+import test.java.TestBaseSetup;
 import test.java.pages.GiftPage;
 import test.java.pages.HomePage;
 import test.java.pages.SearchPage;
 
 import java.util.List;
 
-public class AmazonSamsungTest extends TestBaseSetUp {
+public class AmazonSamsungTest extends TestBaseSetup {
 
     HomePage homePage;
 

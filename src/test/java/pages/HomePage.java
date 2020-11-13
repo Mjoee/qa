@@ -3,6 +3,7 @@ package test.java.pages;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,9 @@ public class HomePage extends BasePage {
     private WebElement registryBtn;
     @FindBy(xpath = "//a[text() ='Gift Cards']")
     private WebElement giftCardsBtn;
+    @FindBy(xpath = "//input[@id='twotabsearchtextbox']")
+    private WebElement SearchField;
+
 
     public HomePage(WebDriver driver) {
         logger.trace("HOME PAGE was initialized");
@@ -31,18 +35,6 @@ public class HomePage extends BasePage {
 
     public HomePage open() {
         logger.info("Open home page");
-        logger.warn("WARNING !!!!!");
-        try{
-            System.out.println(1/0);
-        } catch (ArithmeticException error) {
-            logger.error("ARIPHMETIC ERROR !!!!!");
-        } catch (ArrayIndexOutOfBoundsException aiobe) {
-            logger.error("ARRAY ERROR !!!!!");
-        } catch (Exception e) {
-            logger.info("UNKNOWN ERROR");
-        }
-
-        logger.fatal("ERROR !!!!!");
         driver.get(PropertyLoader.loadProperty("url"));
         wait.until(d -> d.findElements(By.xpath("//div[@id='nav-xshop']/a")).size() == 6);
         /*wait.until(new ExpectedCondition<Boolean>() {
@@ -75,6 +67,16 @@ public class HomePage extends BasePage {
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//h1[text() = 'Gift Cards']")),
                 d -> d.findElements(By.xpath("//div[@class='bxc-grid__image   bxc-grid__image--light']")).size() >= 3
         ));
+        return this;
+    }
+
+    public HomePage typeInSearchField (String searchItem) {
+        SearchField.sendKeys(searchItem);
+        return this;
+    }
+
+    public HomePage clickSearchBtn () {
+        SearchField.sendKeys(Keys.ENTER);
         return this;
     }
 }

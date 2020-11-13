@@ -2,18 +2,15 @@ package test.java.home_work;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import test.java.TestBaseSetUp;
-import test.java.pages.GiftPage;
-import test.java.pages.HomePage;
-import test.java.pages.SearchPage;
+import test.java.TestBaseSetup;
 
-import java.util.ArrayList;
+import test.java.pages.HomePage;
+
 import java.util.List;
 
-public class AmazoniPhoneTest extends TestBaseSetUp  {
+public class AmazoniPhoneTest extends TestBaseSetup {
     HomePage homePage;
     By phoneInSearch = By.xpath("//h2[@class= 'a-size-mini a-spacing-none a-color-base s-line-clamp-2']");
 

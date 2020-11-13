@@ -3,7 +3,8 @@ package test.java.lesson9;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import test.java.TestBaseSetUp;
+
+import test.java.TestBaseSetup;
 import test.java.pages.GiftPage;
 import test.java.pages.HomePage;
 import test.java.utils.RetryAnalyzer;
@@ -12,7 +13,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-public class PoTest2 extends TestBaseSetUp {
+public class PoTest2 extends TestBaseSetup {
     HomePage homePage;
     GiftPage giftPage;
 
