@@ -5,8 +5,11 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test.java.utils.PropertyLoader;
 
 import java.util.ArrayList;
 
@@ -14,11 +17,20 @@ public class HomePage extends BasePage {
     private Logger logger = LogManager.getLogger(HomePage.class);
     WebDriver driver;
     WebDriverWait wait;
-    By sellBtnBy = By.xpath("//a[text() ='Sell']");
-    By registryBtnBy = By.xpath("//a[text() ='Registry']");
-    By giftCardsBtnBy = By.xpath("//a[text() ='Gift Cards']");
-    By searchField = By.id("twotabsearchtextbox");
-    By searchBtn = By.xpath("(//input[@type='submit'])[1]");
+    @FindBy(xpath = "//a[text() ='Sell']")
+    private WebElement sellBtn;
+    @FindBy(xpath = "//a[text() ='Registry']")
+    private WebElement registryBtn;
+    @FindBy(xpath = "//a[text() ='Gift Cards']" )
+    private WebElement giftCardsBtn;
+    @FindBy(id = "twotabsearchtextbox")
+    private WebElement searchField;
+    @FindBy(xpath = "(//input[@type='submit'])[1]")
+    private WebElement searchBtn;
+
+
+
+
 
 
     public HomePage(WebDriver driver) {
@@ -32,7 +44,7 @@ public class HomePage extends BasePage {
         logger.warn("WARNING !!!!!");
         logger.error("ERROR !!!!!");
         logger.fatal("ERROR !!!!!");
-        driver.get("https://www.amazon.com/");
+        driver.get(PropertyLoader.loadProperty("url"));
         wait.until(d -> d.findElements(By.xpath("//div[@id='nav-xshop']/a")).size() == 6);
         /*wait.until(new ExpectedCondition<Boolean>() {
             @Override
@@ -45,21 +57,21 @@ public class HomePage extends BasePage {
 
     public HomePage clickSellBtn() {
         logger.info("Click 'Sell' button");
-        driver.findElement(sellBtnBy).click();
+        sellBtn.click();
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("(//*[contains(text(), 'Sell on Amazon')])[1]")));
         return this;
     }
 
     public HomePage clickRegistryBtn() {
         logger.info("Click 'Registry' button");
-        driver.findElement(registryBtnBy).click();
+        registryBtn.click();
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@alt='Register with Amazon']")));
         return this;
     }
 
     public HomePage clickGiftCardsBtn() {
         logger.info("Click 'Gift cards' button");
-        driver.findElement(giftCardsBtnBy).click();
+        giftCardsBtn.click();
         wait.until(ExpectedConditions.and(
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//h1[text() = 'Gift Cards']")),
                 d -> d.findElements(By.xpath("//div[@class='bxc-grid__image   bxc-grid__image--light']")).size() >= 3
@@ -69,12 +81,12 @@ public class HomePage extends BasePage {
 
 
     public HomePage clickSearchBtn() {
-        driver.findElement(searchField).sendKeys(Keys.ENTER);
+        searchField.sendKeys(Keys.ENTER);
         return this;
     }
 
     public HomePage typeInSearchField(String device){
-        driver.findElement(searchField).sendKeys(device);
+        searchField.sendKeys(device);
         return this;
     }
 

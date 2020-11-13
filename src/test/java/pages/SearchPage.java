@@ -4,11 +4,10 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import test.java.TestBaseSetUp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
 
 public class SearchPage extends TestBaseSetUp {
 
@@ -17,11 +16,6 @@ public class SearchPage extends TestBaseSetUp {
     WebDriverWait wait;
 
 
-
-//    public List<WebElement> getIphoneList() {
-//        logger.info("Get list of Iphones");
-//        return List<WebElement> Iphones = driver.findElements(iphoneInSearch);
-//    }
 
 
 }

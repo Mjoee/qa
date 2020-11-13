@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import test.java.utils.PropertyLoader;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class GiftPage extends BasePage{
 
     public GiftPage open() {
         logger.info("Open Gift page");
-        driver.get("https://www.amazon.com/gift-cards/b/?ie=UTF8&node=2238192011&ref_=nav_cs_gc");
+        driver.get(PropertyLoader.loadProperty("url") + "gift-cards/b/?ie=UTF8&node=2238192011&ref_=nav_cs_gc");
         wait.until(d -> d.findElements(By.xpath("//div[@id='nav-xshop']/a")).size() == 6);
         /*wait.until(new ExpectedCondition<Boolean>() {
             @Override
@@ -41,10 +42,10 @@ public class GiftPage extends BasePage{
         By priceBy = By.xpath("(//span[text() = '" + price + "'])[1]");
         driver.findElement(priceBy).click();
         wait.until(ExpectedConditions.and(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(selectedPriceResultBy),
-                d -> d.findElement(selectedPriceResultBy).getText().equals(price),
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//span[contains(text(), '" + price + "')]")),
                 d -> d.findElements(giftsBy).size() > 1
         ));
+
         return this;
     }
 

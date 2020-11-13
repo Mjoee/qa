@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,19 +17,19 @@ public class TestBaseSetUp {
 
 
     @BeforeMethod
-    public void initializeBrowser() {
+    public void initializeBrowser(ITestContext iTestContext) {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.amazon.com/");
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.MILLISECONDS);
         driver.manage().window().maximize();
+        iTestContext.setAttribute("driver", driver);
     }
 
     @AfterMethod
-    public void finalizeBrowser(ITestResult testResult) {
-        Screenshots screenshots = new Screenshots(driver);
-        screenshots.makeScreenshoot(testResult);
+    public void finalizeBrowser() {
+
         driver.quit();
     }
 

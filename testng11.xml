@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="FirstSuit">
+    <listeners>
+
+        <listener class-name="test.java.utils.Listeners"></listener>
+        <listener class-name="test.java.utils.AnnotationTransformer"></listener>
+
+    </listeners>
+    <test name="FirstTest">
+        <classes>
+            <class name="test.java.lesson9.PoTest"/>
+            <class name="test.java.lesson9.PoTest2"/>
+
+        </classes>
+    </test>
+</suite>
