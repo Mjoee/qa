@@ -3,15 +3,13 @@ package test.java.pages;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.utils.PropertyLoader;
-
-import java.util.ArrayList;
 
 public class HomePage extends BasePage {
     private Logger logger = LogManager.getLogger(HomePage.class);
@@ -21,28 +19,29 @@ public class HomePage extends BasePage {
     private WebElement sellBtn;
     @FindBy(xpath = "//a[text() ='Registry']")
     private WebElement registryBtn;
-    @FindBy(xpath = "//a[text() ='Gift Cards']" )
+    @FindBy(xpath = "//a[text() ='Gift Cards']")
     private WebElement giftCardsBtn;
-    @FindBy(id = "twotabsearchtextbox")
-    private WebElement searchField;
-    @FindBy(xpath = "(//input[@type='submit'])[1]")
-    private WebElement searchBtn;
-
-
-
-
-
 
     public HomePage(WebDriver driver) {
         logger.trace("HOME PAGE was initialized");
         this.driver = driver;
         wait = new WebDriverWait(driver, 10, 500);
+        PageFactory.initElements(driver, this);
     }
 
     public HomePage open() {
         logger.info("Open home page");
         logger.warn("WARNING !!!!!");
-        logger.error("ERROR !!!!!");
+        try{
+            System.out.println(1/0);
+        } catch (ArithmeticException error) {
+            logger.error("ARIPHMETIC ERROR !!!!!");
+        } catch (ArrayIndexOutOfBoundsException aiobe) {
+            logger.error("ARRAY ERROR !!!!!");
+        } catch (Exception e) {
+            logger.info("UNKNOWN ERROR");
+        }
+
         logger.fatal("ERROR !!!!!");
         driver.get(PropertyLoader.loadProperty("url"));
         wait.until(d -> d.findElements(By.xpath("//div[@id='nav-xshop']/a")).size() == 6);
@@ -78,18 +77,4 @@ public class HomePage extends BasePage {
         ));
         return this;
     }
-
-
-    public HomePage clickSearchBtn() {
-        searchField.sendKeys(Keys.ENTER);
-        return this;
-    }
-
-    public HomePage typeInSearchField(String device){
-        searchField.sendKeys(device);
-        return this;
-    }
-
-
-
 }

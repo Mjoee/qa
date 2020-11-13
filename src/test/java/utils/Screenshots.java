@@ -13,32 +13,27 @@ import java.nio.file.Paths;
 import java.util.Date;
 
 public class Screenshots {
-private final String delimiter = System.getProperty("os.name").toLowerCase().contains("windows") ? "\\" : "/";
-private WebDriver driver;
+    private final String delimiter = System.getProperty("os.name").toLowerCase().contains("windows") ? "\\" : "/";
+    private WebDriver driver;
 
     public Screenshots(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void makeScreenshoot(ITestResult testResult) {
+    public void makeScreenshot(ITestResult testResult) {
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         File src = screenshot.getScreenshotAs(OutputType.FILE);
-        Path currentPass = Paths.get("");
+        Path currentPath = Paths.get(""); //C:/Users/Vova/project6 + screenshots
         try {
-            FileUtils.copyFile(src, new File(currentPass.toAbsolutePath().toString()
-                    + delimiter
-                    + "screenshot"
-                    +  delimiter
-                    + testResult.getTestClass().getName().replace(".", delimiter)
-                    + delimiter
-                    + testResult.getMethod().getConstructorOrMethod().getName()
-                    + "-" + new Date().getTime() + ".png"));
+            FileUtils.copyFile(src, new File(
+                    currentPath.toAbsolutePath().toString()
+                            + delimiter + "screenshot"
+                            + delimiter + testResult.getTestClass().getName().replace(".", delimiter)
+                            + delimiter + testResult.getMethod().getConstructorOrMethod().getName()
+                            + "-" + new Date().getTime() + ".png"
+            ));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
 }

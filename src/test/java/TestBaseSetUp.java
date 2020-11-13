@@ -12,16 +12,14 @@ import test.java.utils.Screenshots;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBaseSetUp {
+public class TestBaseSetup {
     public WebDriver driver;
-
 
     @BeforeMethod
     public void initializeBrowser(ITestContext iTestContext) {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new ChromeDriver(chromeOptions);
-        driver.get("https://www.amazon.com/");
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.MILLISECONDS);
         driver.manage().window().maximize();
         iTestContext.setAttribute("driver", driver);
@@ -29,8 +27,6 @@ public class TestBaseSetUp {
 
     @AfterMethod
     public void finalizeBrowser() {
-
         driver.quit();
     }
-
 }

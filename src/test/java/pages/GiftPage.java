@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import test.java.utils.PropertyLoader;
@@ -12,16 +14,20 @@ import test.java.utils.PropertyLoader;
 import java.util.List;
 
 public class GiftPage extends BasePage{
-    private Logger logger = LogManager.getLogger(HomePage.class);
+    private Logger logger = LogManager.getLogger(GiftPage.class);
     WebDriver driver;
     WebDriverWait wait;
-    By selectedPriceResultBy = By.xpath("//span[contains(text(), 'results for')]/following-sibling::span[@class='a-color-state a-text-bold']");
+    //By selectedPriceResultBy = By.xpath("//span[contains(text(), 'results for')]/following-sibling::span[@class='a-color-state a-text-bold']");
     By giftsBy = By.xpath("//div[@data-component-type='s-search-result']");
+
+    @FindBy(xpath = "//div[@data-component-type='s-search-result']")
+    private List<WebElement> cardsList;
 
     public GiftPage(WebDriver driver) {
         logger.trace("GIFT PAGE was initialized");
         this.driver = driver;
         wait = new WebDriverWait(driver, 10, 500);
+        PageFactory.initElements(driver, this);
     }
 
     public GiftPage open() {
@@ -42,16 +48,17 @@ public class GiftPage extends BasePage{
         By priceBy = By.xpath("(//span[text() = '" + price + "'])[1]");
         driver.findElement(priceBy).click();
         wait.until(ExpectedConditions.and(
+//                ExpectedConditions.visibilityOfAllElementsLocatedBy(selectedPriceResultBy),
+//                d -> d.findElement(selectedPriceResultBy).getText().equals(price),
                 ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//span[contains(text(), '" + price + "')]")),
                 d -> d.findElements(giftsBy).size() > 1
         ));
-
         return this;
     }
 
     public List<WebElement> getCartsList() {
         logger.info("Get list of carts");
-        return driver.findElements(By.xpath("//div[@data-component-type='s-search-result']"));
+        return cardsList;
     }
 
     public int getMaximumCartPrice(WebElement cart) {
