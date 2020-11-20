@@ -1,5 +1,6 @@
 package test.java.lesson9;
 
+import io.qameta.allure.*;
 import org.openqa.selenium.WebElement;
 
 import org.testng.annotations.BeforeMethod;
@@ -12,7 +13,8 @@ import test.java.pages.HomePage;
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
-
+@Epic("Epic 1")
+@Feature("First feature")
 public class PoTest extends TestBaseSetup {
     HomePage homePage;
     GiftPage giftPage;
@@ -25,6 +27,16 @@ public class PoTest extends TestBaseSetup {
         giftPage = new GiftPage(driver);
     }
 
+    @Stories({
+            @Story("A11"),
+            @Story("A22")
+    })
+    @Description("Some description")
+    @Severity(SeverityLevel.NORMAL)
+    @Issues({
+            @Issue("A1"),
+            @Issue("A2")
+    })
     @Test
     public void test1() {
         homePage

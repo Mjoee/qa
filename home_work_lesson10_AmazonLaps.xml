@@ -3,8 +3,6 @@
     <test name="FirstTest">
         <classes>
             <class name="test.java.home_work.AmazonLaptopTest"/>
-
-
         </classes>
     </test>
 </suite>

@@ -11,7 +11,7 @@ public class CatTests {
 
     @Parameters({"ageToSet", "expectedAge"})
     @Test
-    public void setAgePositive(/*@Optional("10")*/ int ageToSet, /*@Optional("10")*/ int expectedAge) {
+    public void setAgePositive(@Optional("10") int ageToSet, @Optional("10") int expectedAge) {
         //Arange
 //        int ageToSet = 10;
 //        int expectedAge = 10;
